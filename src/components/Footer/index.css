@@ -1,0 +1,28 @@
+.footer-container {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid black; */
+  background-color: #181818;
+  color: #ffffff;
+  /* padding: 10px; */
+}
+.social-icon {
+  font-size: large;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.socials {
+  /* border: 2px solid black; */
+  margin-top: 30px;
+}
+.footer-paragraph {
+  /* border: 2px solid black; */
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 50px;
+}

@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.desktop-container {
+  height: 100vh;
+  background-image: url('https://res.cloudinary.com/db76nylxq/image/upload/v1677486205/netfilx_bg_j910zj.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logo-container {
+  height: 10vh;
+  align-self: flex-start;
+  padding-top: 30px;
+  padding-left: 120px;
+}
+
+.login-container {
+  height: 90vh;
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  height: 60vh;
+  width: 30vw;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-top: 40px;
+  margin-bottom: 20px;
+}
+
+.login-heading {
+  font-family: sans-serif;
+  color: #ffffff;
+  margin-bottom: 8%;
+}
+.user-pass-container {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  opacity: 1;
+}
+
+label {
+  position: absolute;
+  color: #ffffff;
+  font-family: sans-serif;
+  align-self: flex-start;
+}
+.input-ele {
+  width: 100%;
+  height: 90%;
+  margin-top: 5px;
+  font-size: 15px;
+  color: #ffffff;
+  font-family: sans-serif;
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: #333333;
+  border-width: 0px;
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  margin: 30px;
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #ffffff;
+  background-color: #e50914;
+  padding: 8px;
+  border-radius: 10px;
+  border-width: 0px;
+}
+
+#error-msg {
+  color: #dc2626;
+  font-family: 'Roboto';
+  font-style: normal;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+.mobile-logo {
+  display: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .mobile-container {
+    height: 100vh;
+    background-color: #131313;
+    background-image: none;
+  }
+
+  .logo-container {
+    height: 10vh;
+    width: 100vw;
+    align-self: flex-start;
+    padding-top: 30px;
+    padding-left: 40px;
+  }
+
+  .mobile-logo {
+    display: block;
+  }
+  .desktop-logo {
+    display: none;
+  }
+  .login-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-form {
+    height: 70vh;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #131313;
+    opacity: 1;
+    padding-top: 20px;
+  }
+  .login-heading {
+    align-self: flex-start;
+  }
+}

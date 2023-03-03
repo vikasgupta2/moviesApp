@@ -1,0 +1,96 @@
+.main-account-container {
+  height: 100vh;
+  background-color: #131313;
+}
+
+.account-details-container {
+  height: 67vh;
+  background-color: white;
+  color: #131313;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  /* border: 2px solid green; */
+  padding: 100px;
+  padding-top: 40px;
+}
+.account-container {
+  /* padding: 50px; */
+}
+.account-heading {
+  font-family: roboto;
+}
+.account-heading {
+  /* border: 2px solid green; */
+  padding: 30px;
+}
+
+.membership {
+  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+}
+.member-paragraph {
+  font-size: 20px;
+  font-weight: 600;
+  color: #94a3b8;
+  padding-right: 20px;
+  width: 150px;
+}
+
+.plan-paragraph {
+  font-size: 20px;
+  font-weight: 600;
+  color: #94a3b8;
+  padding-right: 20px;
+  width: 150px;
+}
+.premium {
+  font-family: roboto;
+  font-size: 18px;
+}
+.email {
+  font-family: roboto;
+  font-size: 18px;
+}
+.password {
+  font-size: 20px;
+  /* font-weight: 600; */
+  color: #94a3b8;
+}
+.ultra {
+  font-family: roboto;
+  font-size: 18px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  margin-left: 15px;
+}
+.plan {
+  padding: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  height: 2px;
+  color: #94a3b8;
+  margin-left: 30px;
+}
+.logout-btn {
+  align-self: center;
+  font-size: 15px;
+  margin: 25px;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  background-color: #e50914;
+  border-width: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,82 @@
+.navbar {
+  height: 13vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.logo-menu-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  width: 50vw;
+}
+
+.home {
+  font-family: Roboto;
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 50px;
+  color: white;
+}
+.popular {
+  font-family: Roboto;
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 35px;
+  color: white;
+}
+.popular:hover {
+  font-weight: 600;
+  font-family: 'roboto';
+}
+.home:hover {
+  font-weight: 600;
+  font-family: 'roboto';
+}
+.search-profile-container {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  width: 30vw;
+}
+
+.search-input-container {
+  height: 70%;
+  width: 25vw;
+  padding-left: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-container {
+  height: 70%;
+  background-color: white;
+  display: flex;
+  border-radius: 40px;
+}
+
+input {
+  height: 60%;
+  width: 10vw;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding-left: 5px;
+  color: white;
+  background-color: #181818;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+}
+.search-icon {
+  height: 70%;
+  font-size: x-large;
+  margin-left: 5px;
+  color: white;
+}
+.list-item {
+  list-style-type: none;
+}

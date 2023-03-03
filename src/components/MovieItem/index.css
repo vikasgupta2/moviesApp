@@ -1,0 +1,11 @@
+.movie-item {
+  list-style-type: none;
+  /* border: 1px solid red; */
+  margin: 15px;
+}
+.movie-image-item {
+  /* border: 1px solid green; */
+  height: 220px;
+  width: 320px;
+  border-radius: 8px;
+}
