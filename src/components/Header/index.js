@@ -1,4 +1,3 @@
-// import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {HiOutlineSearch} from 'react-icons/hi'
 import './index.css'
@@ -7,6 +6,16 @@ const Header = props => {
   const accountProfile = () => {
     const {history} = props
     history.push('/account')
+  }
+  const redirectToSearchRoute = () => {
+    const {history} = props
+    history.replace('/search')
+  }
+
+  const getSearchData = () => {
+    const {searchData} = props
+    const inputValue = document.getElementById('inputEle').value
+    searchData(inputValue)
   }
 
   return (
@@ -33,8 +42,20 @@ const Header = props => {
       </ul>
       <div className="search-profile-container">
         <div className="search-input-container">
-          <input type="text" placeholder="Search" />
-          <HiOutlineSearch className="search-icon" />
+          <input
+            type="search"
+            placeholder="Search"
+            id="inputEle"
+            onChange={redirectToSearchRoute}
+          />
+          <button
+            type="button"
+            testid="searchButton"
+            className="search-btn"
+            onClick={getSearchData}
+          >
+            <HiOutlineSearch className="search-icon" />
+          </button>
         </div>
         <div className="profile-container">
           <img

@@ -3,7 +3,9 @@ import Cookies from 'js-cookie'
 import Header from '../Header'
 import Footer from '../Footer'
 import MovieItem from '../MovieItem'
+// import GenreAudioComponent from '../GenreAudio'
 import './index.css'
+// import GenreAudioComponent from '../GenreAudio'
 
 class MovieItemDetails extends Component {
   state = {movieDetailsList: [], similarMoviesList: []}
@@ -27,7 +29,6 @@ class MovieItemDetails extends Component {
       if (response.ok === true) {
         const data = await response.json()
         const eachMovieItem = data.movie_details
-        console.log('vikas', eachMovieItem)
         const movieDataList = {
           adult: eachMovieItem.adult,
           backdropPath: eachMovieItem.backdrop_path,
@@ -63,30 +64,19 @@ class MovieItemDetails extends Component {
     const {movieDetailsList, similarMoviesList} = this.state
     const {
       adult,
-      genres,
+      //   genres,
       overview,
       releaseDate,
       runtime,
       //   spokenLanguage,
       title,
-      //   //   id,
-      //   //   posterPath,
-      //   //   backdropPath,
-      //   //   budget,
-      //   //   voteAverage,
-      //   //   voteCount,
+      //   id,
+      //   posterPath,
+      //   backdropPath,
+      //   budget,
+      //   voteAverage,
+      //   voteCount,
     } = movieDetailsList
-    console.log(movieDetailsList, similarMoviesList)
-    console.log(genres)
-    // const GenreAudioComponent = props => {
-    //   const {eachItem} = props
-    //   const {id, name} = eachItem
-    //   return (
-    //     <div key={id} className="list-item">
-    //       <p>{name}</p>
-    //     </div>
-    //   )
-    // }
 
     return (
       <div className="movieItemContainer">
@@ -106,15 +96,15 @@ class MovieItemDetails extends Component {
             <h1>Genres</h1>
             {/* <ul>
               {genres.map(eachGenre => (
-                <GenreAudioComponent eachItem={eachGenre} />
+                <GenreAudioComponent key={eachGenre.id} eachItem={eachGenre} />
               ))}
             </ul> */}
           </div>
-          <div className="genre">
+          <div className="audio">
             <h1>Audio Available</h1>
             {/* <ul>
               {spokenLanguage.map(eachAudio => (
-                <GenreAudioComponent eachItem={eachAudio} />
+                <GenreAudioComponent key={eachAudio.id} eachItem={eachAudio} />
               ))}
             </ul> */}
           </div>

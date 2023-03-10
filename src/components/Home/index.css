@@ -44,8 +44,8 @@
 }
 .bottom-container {
   width: 100%;
-  background-color: black;
-  box-shadow: 0px 5px 60px 50px black;
+  background-color: #181818;
+  box-shadow: 0px 5px 60px 50px #181818;
   color: #ffffff;
   padding: 50px;
   padding-top: 60px;
@@ -96,13 +96,12 @@
   color: #ffffff;
 }
 
-.slick-paragraph {
-  width: 80%;
+.video-heading {
   align-self: center;
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 400;
   font-family: roboto;
-  padding-left: 18px;
+  margin-left: 180px;
 }
 .loader-container {
   display: flex;

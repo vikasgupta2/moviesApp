@@ -40,7 +40,13 @@ const settings = {
   ],
 }
 
-const apiStatusConstants = {
+const apiStatusTrendingConstant = {
+  inProgress: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
+
+const apiStatusOriginalsConstant = {
   inProgress: 'IN_PROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
@@ -51,25 +57,26 @@ class Home extends Component {
     trendingVideos: [],
     originalVideos: [],
     randomOriginalMovie: {},
-    apiStatus: apiStatusConstants.inProgress,
+    apiStatusTrendingVideos: apiStatusTrendingConstant.inProgress,
+    apiStatusOriginalVideos: apiStatusOriginalsConstant.inProgress,
   }
 
   componentDidMount() {
-    this.getTrendingVideos()
-    this.getOriginalVideos()
+    this.getTrendingData()
+    this.getOriginalData()
   }
 
-  getTrendingVideos = async () => {
+  getTrendingData = async () => {
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
     const options = {
       headers: {Authorization: `Bearer ${jwtToken}`},
       method: 'GET',
     }
-    const data = await fetch(apiUrl, options)
-    if (data.ok === true) {
-      const trending = await data.json()
-      const trendingArray = trending.results
+    const response = await fetch(apiUrl, options)
+    if (response.ok === true) {
+      const data = await response.json()
+      const trendingArray = data.results
       const convertedTrending = trendingArray.map(each => ({
         backdropPath: each.backdrop_path,
         id: each.id,
@@ -79,23 +86,25 @@ class Home extends Component {
       }))
       this.setState({
         trendingVideos: convertedTrending,
-        apiStatus: apiStatusConstants.success,
+        apiStatusTrendingVideos: apiStatusTrendingConstant.success,
       })
-    } else if (data.ok === false) {
-      this.setState({apiStatus: apiStatusConstants.failure})
+    } else if (response.ok === false) {
+      this.setState({
+        apiStatusTrendingVideos: apiStatusTrendingConstant.failure,
+      })
     }
   }
 
-  getOriginalVideos = async () => {
+  getOriginalData = async () => {
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/movies-app/originals'
     const options = {
       headers: {Authorization: `Bearer ${jwtToken}`},
       method: 'GET',
     }
-    const data = await fetch(apiUrl, options)
-    if (data.ok === true) {
-      const original = await data.json()
+    const response = await fetch(apiUrl, options)
+    if (response.ok === true) {
+      const original = await response.json()
       const originalArray = original.results
       const convertedOriginal = originalArray.map(each => ({
         backdropPath: each.backdrop_path,
@@ -109,10 +118,12 @@ class Home extends Component {
       this.setState({
         originalVideos: convertedOriginal,
         randomOriginalMovie: randomOriginal,
-        apiStatus: apiStatusConstants.success,
+        apiStatusOriginalVideos: apiStatusOriginalsConstant.success,
       })
-    } else if (data.ok === false) {
-      this.setState({apiStatus: apiStatusConstants.failure})
+    } else if (response.ok === false) {
+      this.setState({
+        apiStatusOriginalVideos: apiStatusOriginalsConstant.failure,
+      })
     }
   }
 
@@ -152,16 +163,14 @@ class Home extends Component {
     )
   }
 
-  renderSuccessView = () => (
+  TrendingSuccessView = () => (
     <div className="trending-container">
-      <p className="slick-paragraph">Trending Now</p>
       <div className="slick-container">{this.renderTrendingSlider()}</div>
     </div>
   )
 
-  renderOriginalSuccessView = () => (
+  OriginalSuccessView = () => (
     <div className="original-container">
-      <p className="slick-paragraph">Originals</p>
       <div className="slick-container">{this.renderOriginalSlider()}</div>
     </div>
   )
@@ -180,13 +189,13 @@ class Home extends Component {
   renderFailureView = () => <FailureView tryAgain={this.tryAgain} />
 
   renderTrendingContainer() {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderSuccessView()
-      case apiStatusConstants.failure:
+    const {apiStatusTrendingVideos} = this.state
+    switch (apiStatusTrendingVideos) {
+      case apiStatusTrendingConstant.success:
+        return this.TrendingSuccessView()
+      case apiStatusTrendingConstant.failure:
         return this.renderFailureView()
-      case apiStatusConstants.inProgress:
+      case apiStatusTrendingConstant.inProgress:
         return this.renderLoader()
       default:
         return null
@@ -194,14 +203,13 @@ class Home extends Component {
   }
 
   renderOriginalContainer() {
-    const {apiStatus} = this.state
-    // console.log(apiStatus)
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderOriginalSuccessView()
-      case apiStatusConstants.failure:
+    const {apiStatusOriginalVideos} = this.state
+    switch (apiStatusOriginalVideos) {
+      case apiStatusOriginalsConstant.success:
+        return this.OriginalSuccessView()
+      case apiStatusOriginalsConstant.failure:
         return this.renderFailureView()
-      case apiStatusConstants.inProgress:
+      case apiStatusOriginalsConstant.inProgress:
         return this.renderLoader()
       default:
         return null
@@ -215,7 +223,7 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
     return (
-      <div className="main-home-container" testid="home">
+      <div className="main-home-container">
         <Header />
         <div className="top-container">
           <h1 className="heading-home">{randomOriginalMovie.title}</h1>
@@ -225,7 +233,9 @@ class Home extends Component {
           </button>
         </div>
         <div className="bottom-container">
+          <h1 className="video-heading">Trending Now</h1>
           {this.renderTrendingContainer()}
+          <h1 className="video-heading">Originals</h1>
           {this.renderOriginalContainer()}
         </div>
 

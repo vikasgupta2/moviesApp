@@ -15,11 +15,11 @@ class Account extends Component {
     return (
       <div className="main-account-container">
         <Header />
-        <div className="account-details-container">
+        <div className="account-detail-container">
           <div classNames="account-container">
             <h1 className="account-heading">Account</h1>
             <hr className="line" />
-            <div className="membership">
+            <div className="membership-container">
               <p className="member-paragraph">Member ship</p>
               <div>
                 <p className="email">rahul@gmail.com</p>
@@ -27,8 +27,8 @@ class Account extends Component {
               </div>
             </div>
             <hr className="line" />
-            <div className="plan">
-              <p className="plan-paragraph"> Plan details</p>
+            <div className="plan-container">
+              <p className="plan-paragraph">Plan details</p>
               <p className="premium">Premium </p>
               <p className="ultra">Ultra HD</p>
             </div>

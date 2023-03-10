@@ -3,7 +3,7 @@
   background-color: #131313;
 }
 
-.account-details-container {
+.account-detail-container {
   height: 67vh;
   background-color: white;
   color: #131313;
@@ -26,7 +26,7 @@
   padding: 30px;
 }
 
-.membership {
+.membership-container {
   padding: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -68,7 +68,7 @@
   padding: 2px;
   margin-left: 15px;
 }
-.plan {
+.plan-container {
   padding: 30px;
   padding-top: 15px;
   padding-bottom: 15px;

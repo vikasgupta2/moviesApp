@@ -12,8 +12,8 @@ const FailureView = props => {
         src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677723409/alert-triangle_pxoyql.png"
         alt="failure-img"
       />
-      <p>Something went wrong. Please try again </p>
-      <button className="try-again-btn" type="button" onClick={retry}>
+      <p className="failure-para">Something went wrong. Please try again </p>
+      <button className="failure-btn" type="button" onClick={retry}>
         Try again
       </button>
     </div>

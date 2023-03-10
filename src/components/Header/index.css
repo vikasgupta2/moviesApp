@@ -6,7 +6,7 @@
   padding: 10px;
   padding-left: 10vw;
   padding-right: 10vw;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .logo-menu-item {
   padding: 10px;
@@ -60,22 +60,35 @@
   border-radius: 40px;
 }
 
-input {
-  height: 60%;
+#inputEle {
+  height: 65%;
   width: 10vw;
   border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   border: none;
   outline: none;
   padding-left: 5px;
   color: white;
-  background-color: #181818;
-  /* background-color: rgba(0, 0, 0, 0.6); */
+  /* background-color: black; */
+  background-color: rgba(0, 0, 0, 0.6);
 }
+.search-btn {
+  height: 65%;
+  align-self: center;
+  background-color: #181818;
+  border-width: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
 .search-icon {
-  height: 70%;
-  font-size: x-large;
-  margin-left: 5px;
+  font-size: large;
+  align-self: center;
   color: white;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .list-item {
   list-style-type: none;

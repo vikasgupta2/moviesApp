@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-import './index.css'
 import Cookies from 'js-cookie'
+import './index.css'
 
 class Login extends Component {
   state = {username: '', password: ''}
@@ -56,7 +56,7 @@ class Login extends Component {
           <form className="login-form" onSubmit={this.verifyUser}>
             <h1 className="login-heading">Login</h1>
             <div className="user-pass-container">
-              <label htmlFor="username" className="username">
+              <label htmlFor="username" className="username-label">
                 USERNAME
               </label>
               <br />
@@ -65,11 +65,11 @@ class Login extends Component {
                 type="text"
                 placeholder="Username"
                 id="username"
-                className="input-ele"
+                className="input-element"
               />
             </div>
             <div className="user-pass-container">
-              <label htmlFor="password" className="password">
+              <label htmlFor="password" className="password-label">
                 PASSWORD
               </label>
               <br />
@@ -78,7 +78,7 @@ class Login extends Component {
                 type="password"
                 placeholder="Password"
                 id="password"
-                className="input-ele"
+                className="input-element"
               />
             </div>
             <p id="error-msg" />
