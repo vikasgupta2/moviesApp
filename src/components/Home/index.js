@@ -67,6 +67,9 @@ class Home extends Component {
   }
 
   getTrendingData = async () => {
+    this.setState({
+      apiStatusTrendingVideos: apiStatusTrendingConstant.inProgress,
+    })
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
     const options = {
@@ -82,13 +85,13 @@ class Home extends Component {
         id: each.id,
         overview: each.overview,
         posterPath: each.poster_path,
-        title: each.title,
+        name: each.title,
       }))
       this.setState({
         trendingVideos: convertedTrending,
         apiStatusTrendingVideos: apiStatusTrendingConstant.success,
       })
-    } else if (response.ok === false) {
+    } else {
       this.setState({
         apiStatusTrendingVideos: apiStatusTrendingConstant.failure,
       })
@@ -96,6 +99,9 @@ class Home extends Component {
   }
 
   getOriginalData = async () => {
+    this.setState({
+      apiStatusOriginalVideos: apiStatusTrendingConstant.inProgress,
+    })
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/movies-app/originals'
     const options = {
@@ -111,7 +117,7 @@ class Home extends Component {
         id: each.id,
         overview: each.overview,
         posterPath: each.poster_path,
-        title: each.title,
+        name: each.title,
       }))
       const randomOriginal =
         convertedOriginal[Math.floor(Math.random() * convertedOriginal.length)]
@@ -120,7 +126,7 @@ class Home extends Component {
         randomOriginalMovie: randomOriginal,
         apiStatusOriginalVideos: apiStatusOriginalsConstant.success,
       })
-    } else if (response.ok === false) {
+    } else {
       this.setState({
         apiStatusOriginalVideos: apiStatusOriginalsConstant.failure,
       })
@@ -181,12 +187,9 @@ class Home extends Component {
     </div>
   )
 
-  tryAgain = () => {
-    this.getOriginalVideos()
-    this.getTrendingVideos()
-  }
+  TrendingFailureView = () => <FailureView tryAgain={this.getTrendingData} />
 
-  renderFailureView = () => <FailureView tryAgain={this.tryAgain} />
+  OriginalFailureView = () => <FailureView tryAgain={this.getOriginalData} />
 
   renderTrendingContainer() {
     const {apiStatusTrendingVideos} = this.state
@@ -194,7 +197,7 @@ class Home extends Component {
       case apiStatusTrendingConstant.success:
         return this.TrendingSuccessView()
       case apiStatusTrendingConstant.failure:
-        return this.renderFailureView()
+        return this.TrendingFailureView()
       case apiStatusTrendingConstant.inProgress:
         return this.renderLoader()
       default:
@@ -208,7 +211,7 @@ class Home extends Component {
       case apiStatusOriginalsConstant.success:
         return this.OriginalSuccessView()
       case apiStatusOriginalsConstant.failure:
-        return this.renderFailureView()
+        return this.OriginalFailureView()
       case apiStatusOriginalsConstant.inProgress:
         return this.renderLoader()
       default:
@@ -219,11 +222,17 @@ class Home extends Component {
   render() {
     const {randomOriginalMovie} = this.state
     const jwtToken = Cookies.get('jwt_token')
+    const randomBackground = {
+      backgroundImage: `url(${randomOriginalMovie.backdropPath})`,
+      height: '100vh',
+      backgroundSize: '100vw 80vh',
+      backgroundRepeat: 'no-repeat',
+    }
     if (jwtToken === undefined) {
       return <Redirect to="/login" />
     }
     return (
-      <div className="main-home-container">
+      <div style={randomBackground}>
         <Header />
         <div className="top-container">
           <h1 className="heading-home">{randomOriginalMovie.title}</h1>

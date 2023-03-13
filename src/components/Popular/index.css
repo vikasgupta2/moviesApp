@@ -1,11 +1,9 @@
 .popular-main-container {
+  height: 100vh;
   background-color: #181818;
-  width: 100vw;
 }
 
 .popular-movies {
-  /* border: 5px solid green; */
-  width: 100vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -14,4 +12,18 @@
   padding-left: 3vw;
   padding-right: 3vw;
   padding-bottom: 20px;
+}
+
+.popular-failure {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.popular-loading {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

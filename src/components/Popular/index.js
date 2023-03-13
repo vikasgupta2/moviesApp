@@ -21,6 +21,7 @@ class Popular extends Component {
   }
 
   getPopularMovies = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       const apiUrl = 'https://apis.ccbp.in/movies-app/popular-movies'
@@ -61,16 +62,16 @@ class Popular extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container" testid="loader">
+    <div className="popular-loading" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
 
-  tryAgain = () => {
-    this.getPopularMovies()
-  }
-
-  renderFailureView = () => <FailureView tryAgain={this.tryAgain} />
+  renderFailureView = () => (
+    <div className="popular-failure">
+      <FailureView tryAgain={this.getPopularMovies} />
+    </div>
+  )
 
   renderPopularMovies() {
     const {apiStatus} = this.state

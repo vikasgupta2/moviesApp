@@ -3,12 +3,6 @@
   padding: 0px;
 }
 
-.main-home-container {
-  height: 100vh;
-  background-image: url(https://res.cloudinary.com/db76nylxq/image/upload/v1677581376/Image_1_thjvcd.png);
-  background-size: 100vw 80vh;
-  background-repeat: no-repeat;
-}
 .top-container {
   height: 67vh;
   display: flex;
@@ -88,7 +82,6 @@
   padding: 20px;
   height: 50vh;
   width: 100%;
-  /* border: 2px solid #ffffff; */
 }
 
 .slick-prev:before,
@@ -107,4 +100,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 200px;
 }

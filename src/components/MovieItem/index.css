@@ -1,11 +1,13 @@
 .movie-item {
+  margin: 10px;
+}
+.list-movie-item {
   list-style-type: none;
-  /* border: 1px solid red; */
-  margin: 15px;
 }
 .movie-image-item {
-  /* border: 1px solid green; */
+  border: 2px solid black;
   height: 220px;
   width: 320px;
+  /* padding: 10px; */
   border-radius: 8px;
 }

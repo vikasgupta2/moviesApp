@@ -17,4 +17,6 @@
   padding-left: 10px;
   padding-right: 10px;
   font-family: 'roboto';
+  border-radius: 5px;
+  cursor: pointer;
 }

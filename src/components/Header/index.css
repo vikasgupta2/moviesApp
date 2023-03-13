@@ -44,13 +44,23 @@
   width: 30vw;
 }
 
-.search-input-container {
+.search-input-container1 {
   height: 70%;
   width: 25vw;
-  padding-left: 25%;
+  margin-right: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.search-input-container2 {
+  height: 70%;
+  width: 25vw;
+  margin-right: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  display: none;
 }
 
 .profile-container {
@@ -60,7 +70,7 @@
   border-radius: 40px;
 }
 
-#inputEle {
+/* .inputSearch {
   height: 65%;
   width: 10vw;
   border-radius: 5px;
@@ -68,28 +78,69 @@
   border-bottom-right-radius: 0px;
   border: none;
   outline: none;
-  padding-left: 5px;
+  padding-left: 10px;
   color: white;
-  /* background-color: black; */
+  background-color: rgba(0, 0, 0, 0.6);
+  align-self: center;
+  border: 1px solid white;
+  border-right: 0px;
+} */
+.inputClass {
+  height: 65%;
+  width: 10vw;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  outline: none;
+  padding-left: 10px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-self: center;
+  border: 1px solid white;
+  border-right: 0px;
+}
+input:focus {
   background-color: rgba(0, 0, 0, 0.6);
 }
 .search-btn {
   height: 65%;
   align-self: center;
-  background-color: #181818;
+  background-color: rgba(0, 0, 0, 0);
   border-width: 0px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
 }
 
+.search-btn1 {
+  height: 65%;
+  align-self: center;
+  background-color: #292626;
+  border-width: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-self: center;
+  border: 1px solid white;
+  border-left: 0px;
+}
+
 .search-icon {
-  font-size: large;
+  font-size: 25px;
+  font-weight: bold;
   align-self: center;
   color: white;
-  margin-left: 10px;
-  margin-right: 10px;
 }
+
 .list-item {
   list-style-type: none;
+}
+
+.searchButton {
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0px;
+  cursor: pointer;
 }

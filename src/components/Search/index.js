@@ -2,7 +2,6 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
-
 import MovieItem from '../MovieItem'
 
 import './index.css'
@@ -18,13 +17,42 @@ class Search extends Component {
   state = {
     searchData: [],
     searchValue: '',
-    apiStatus: apiStatusConstants.inProgress,
+    apiStatus: apiStatusConstants.dataZero,
   }
 
-  getData = async query => {
+  componentDidMount() {
+    this.changeSearchBar()
+  }
+
+  changeSearchBar = () => {
+    document
+      .getElementById('searchBar')
+      .classList.remove('search-input-container1')
+    document
+      .getElementById('searchBar')
+      .classList.add('search-input-container2')
+    document
+      .getElementById('searchBarButton')
+      .classList.remove('search-input-container2')
+    document
+      .getElementById('searchBarButton')
+      .classList.add('search-input-container1')
+    document.getElementById('inputEle').focus()
+  }
+
+  getInputValue1 = event => {
+    this.setState({
+      searchValue: event.target.value,
+      apiStatus: apiStatusConstants.inProgress,
+    })
+  }
+
+  getData = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+    const {searchValue} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
-      const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${query}`
+      const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchValue}`
       const options = {
         headers: {Authorization: `Bearer ${jwtToken}`},
         method: 'GET',
@@ -50,31 +78,38 @@ class Search extends Component {
             apiStatus: apiStatusConstants.dataZero,
           })
         }
-      } else if (response.ok === false) {
-        this.setState({apiStatus: apiStatusConstants.failure})
+      } else {
+        this.setState({apiStatus: apiStatusConstants.failureView})
       }
     }
   }
 
-  fetchSearchData = inputValue => {
-    this.setState({searchValue: inputValue})
-    this.getData(inputValue)
-  }
-
-  fetchTryAgain = () => {
-    const {searchValue} = this.state
-    this.getData(searchValue)
-  }
-
   noDataView = () => {
     const {searchValue} = this.state
+    if (searchValue.length === 0) {
+      return (
+        <div className="noDataView">
+          <img
+            src="https://res.cloudinary.com/db76nylxq/image/upload/v1678732530/Illustration_1_puqiop.png"
+            alt="no movies"
+            className="noData-img"
+          />
+          <p className="noData-para">
+            Search your favourite movie in the above search box
+          </p>
+        </div>
+      )
+    }
     return (
-      <div className="content-container">
+      <div className="noDataView">
         <img
-          src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677839114/Illustration_ucpt6v.png"
+          src="https://res.cloudinary.com/db76nylxq/image/upload/v1678732530/Illustration_1_puqiop.png"
           alt="no movies"
+          className="noData-img"
         />
-        <p className>Your search for {searchValue} did not find any matches.</p>
+        <p className="noData-para">
+          Your search for {searchValue} did not find any matches.
+        </p>
       </div>
     )
   }
@@ -88,7 +123,7 @@ class Search extends Component {
   successView = () => {
     const {searchData} = this.state
     return (
-      <ul>
+      <ul className="successItem">
         {searchData.map(eachItem => (
           <MovieItem key={eachItem.id} movieDetails={eachItem} />
         ))}
@@ -97,13 +132,13 @@ class Search extends Component {
   }
 
   failureView = () => (
-    <div className="">
+    <div className="failureView">
       <img
         src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677840687/Group_1_ne42db.png"
         alt="failure view"
       />
-      <p>Something went wrong. Please try again</p>
-      <button type="button" onClick={this.fetchTryAgain}>
+      <p className="failure-para">Something went wrong. Please try again</p>
+      <button type="button" onClick={this.getData} className="failureBtn">
         Try Again
       </button>
     </div>
@@ -126,8 +161,11 @@ class Search extends Component {
   render() {
     return (
       <div className="search-container">
-        <Header searchData={this.fetchSearchData} />
-        {this.renderSearchData()}
+        <Header
+          searchMovie={this.getData}
+          getInputValue={this.getInputValue1}
+        />
+        <div className="content-container">{this.renderSearchData()}</div>
       </div>
     )
   }
