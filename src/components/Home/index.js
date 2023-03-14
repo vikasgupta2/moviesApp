@@ -235,7 +235,7 @@ class Home extends Component {
       <div style={randomBackground}>
         <Header />
         <div className="top-container">
-          <h1 className="heading-home">{randomOriginalMovie.title}</h1>
+          <h1 className="heading-home">{randomOriginalMovie.name}</h1>
           <p className="paragraph-home">{randomOriginalMovie.overview}</p>
           <button className="btn-home" type="button">
             Play
