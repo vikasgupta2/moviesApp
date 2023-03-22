@@ -6,6 +6,7 @@ import Slider from 'react-slick'
 import Header from '../Header'
 import Footer from '../Footer'
 import FailureView from '../FailureView'
+import TopFailureView from '../HomeTopFailure'
 
 import './index.css'
 
@@ -51,6 +52,11 @@ const apiStatusOriginalsConstant = {
   success: 'SUCCESS',
   failure: 'FAILURE',
 }
+const apiStatusTopContainerConstant = {
+  inProgress: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
 
 class Home extends Component {
   state = {
@@ -59,6 +65,7 @@ class Home extends Component {
     randomOriginalMovie: {},
     apiStatusTrendingVideos: apiStatusTrendingConstant.inProgress,
     apiStatusOriginalVideos: apiStatusOriginalsConstant.inProgress,
+    apiStatusTopContainer: apiStatusTopContainerConstant.inProgress,
   }
 
   componentDidMount() {
@@ -100,7 +107,8 @@ class Home extends Component {
 
   getOriginalData = async () => {
     this.setState({
-      apiStatusOriginalVideos: apiStatusTrendingConstant.inProgress,
+      apiStatusOriginalVideos: apiStatusOriginalsConstant.inProgress,
+      apiStatusTopContainer: apiStatusTopContainerConstant.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = 'https://apis.ccbp.in/movies-app/originals'
@@ -125,10 +133,12 @@ class Home extends Component {
         originalVideos: convertedOriginal,
         randomOriginalMovie: randomOriginal,
         apiStatusOriginalVideos: apiStatusOriginalsConstant.success,
+        apiStatusTopContainer: apiStatusTopContainerConstant.success,
       })
     } else {
       this.setState({
         apiStatusOriginalVideos: apiStatusOriginalsConstant.failure,
+        apiStatusTopContainer: apiStatusTopContainerConstant.failure,
       })
     }
   }
@@ -181,15 +191,33 @@ class Home extends Component {
     </div>
   )
 
-  renderLoader = () => (
-    <div className="loader-container" testid="loader">
-      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
-    </div>
+  topContainerSuccessView = () => {
+    const {randomOriginalMovie} = this.state
+    return (
+      <div className="top-container">
+        <h1>vikas </h1>
+        <h1 className="heading-home">{randomOriginalMovie.name}</h1>
+        <p className="paragraph-home">{randomOriginalMovie.overview}</p>
+        <button className="btn-home" type="button">
+          Play
+        </button>
+      </div>
+    )
+  }
+
+  topContainerFailureView = () => (
+    <TopFailureView tryAgain={this.getOriginalData} />
   )
 
   TrendingFailureView = () => <FailureView tryAgain={this.getTrendingData} />
 
   OriginalFailureView = () => <FailureView tryAgain={this.getOriginalData} />
+
+  renderLoader = () => (
+    <div className="loader-container" testid="loader">
+      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+    </div>
+  )
 
   renderTrendingContainer() {
     const {apiStatusTrendingVideos} = this.state
@@ -219,35 +247,52 @@ class Home extends Component {
     }
   }
 
+  renderTopContainer() {
+    const {apiStatusTopContainer} = this.state
+    switch (apiStatusTopContainer) {
+      case apiStatusTopContainer.success:
+        return this.topContainerSuccessView()
+      case apiStatusTopContainer.failure:
+        return this.topContainerFailureView()
+      case apiStatusTopContainer.inProgress:
+        return this.renderLoader()
+      default:
+        return null
+    }
+  }
+
   render() {
     const {randomOriginalMovie} = this.state
-    const jwtToken = Cookies.get('jwt_token')
-    const randomBackground = {
+    let randomMovieBackground = {
       backgroundImage: `url(${randomOriginalMovie.backdropPath})`,
       height: '100vh',
       backgroundSize: '100vw 80vh',
       backgroundRepeat: 'no-repeat',
+      backgroundColor: '#181818',
     }
+
+    if (randomOriginalMovie.name === undefined) {
+      randomMovieBackground = {
+        height: '100vh',
+        backgroundColor: '#181818',
+      }
+    }
+
+    const jwtToken = Cookies.get('jwt_token')
     if (jwtToken === undefined) {
       return <Redirect to="/login" />
     }
+
     return (
-      <div style={randomBackground}>
+      <div style={randomMovieBackground}>
         <Header />
-        <div className="top-container">
-          <h1 className="heading-home">{randomOriginalMovie.name}</h1>
-          <p className="paragraph-home">{randomOriginalMovie.overview}</p>
-          <button className="btn-home" type="button">
-            Play
-          </button>
-        </div>
+        <div className="main-top-container">{this.renderTopContainer()}</div>
         <div className="bottom-container">
           <h1 className="video-heading">Trending Now</h1>
           {this.renderTrendingContainer()}
           <h1 className="video-heading">Originals</h1>
           {this.renderOriginalContainer()}
         </div>
-
         <Footer />
       </div>
     )

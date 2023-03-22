@@ -7,6 +7,7 @@
   padding-left: 10vw;
   padding-right: 10vw;
   background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: #131313; */
 }
 .logo-menu-item {
   padding: 10px;
@@ -94,6 +95,7 @@
   outline: none;
   padding-left: 10px;
   color: white;
+
   background-color: rgba(0, 0, 0, 0.6);
   align-self: center;
   border: 1px solid white;

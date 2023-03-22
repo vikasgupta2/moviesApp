@@ -1,0 +1,29 @@
+.failure-container-home {
+  background-color: #000000;
+  border-radius: 5px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 55vh; 
+  /* margin-top: 25px;
+  /* margin-left: 150px;
+  /* margin-right: 150px;
+  /* margin-bottom: 25px; 
+  /* border: 1px solid white;*/
+}
+.failure-para-home {
+  font-family: roboto;
+  font-size: 20px;
+  margin: 10px;
+}
+.failure-btn-home {
+  font-size: 15px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: 'roboto';
+  border-radius: 5px;
+  cursor: pointer;
+}

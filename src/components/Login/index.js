@@ -49,7 +49,7 @@ class Login extends Component {
           <img
             className="mobile-logo"
             src="https://res.cloudinary.com/db76nylxq/image/upload/v1677540075/Group_7399_od8hwh.png"
-            alt="login website logo"
+            alt="login website logo-f"
           />
         </div>
         <div className="login-container">

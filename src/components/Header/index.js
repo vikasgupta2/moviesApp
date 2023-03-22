@@ -43,7 +43,6 @@ class Header extends Component {
             <button
               type="button"
               className="searchButton"
-              testid="searchButton"
               onClick={this.redirectToSearchRoute}
             >
               <HiOutlineSearch className="search-icon" />

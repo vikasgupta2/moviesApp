@@ -102,3 +102,13 @@
   align-items: center;
   margin: 200px;
 }
+.main-top-container {
+  height: 55vh;
+  /* border: 2px solid white; */
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: none;
+  border-radius: 5px;
+}
