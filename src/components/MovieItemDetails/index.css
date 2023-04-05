@@ -3,4 +3,37 @@
 }
 .detail-container {
   display: flex;
+  /* justify-content: center; */
+  background-color: #181818;
+}
+.movieDetails {
+  border: 1px solid black;
+  margin-top: 80px;
+  padding-bottom: 50px;
+  margin-left: 120px;
+  width: 50vw;
+  align-self: center;
+}
+.more-like-heading {
+  color: white;
+  font-family: 'roboto';
+  font-size: 25px;
+  padding-left: 8px;
+}
+.similar-container {
+  border: 1px solid black;
+  width: 80vw;
+  align-self: center;
+}
+.similar-movies {
+  display: flex;
+  flex-wrap: wrap;
+}
+.genre {
+  display: flex;
+  flex-direction: column;
+}
+.audio {
+  display: flex;
+  flex-direction: column;
 }

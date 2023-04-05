@@ -10,11 +10,11 @@ const FailureView = props => {
     <div className="failure-container">
       <img
         src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677723409/alert-triangle_pxoyql.png"
-        alt="failure-img"
+        alt="failure view"
       />
       <p className="failure-para">Something went wrong. Please try again </p>
       <button className="failure-btn" type="button" onClick={retry}>
-        Try again
+        Try Again
       </button>
     </div>
   )

@@ -11,7 +11,7 @@ const TopFailureView = props => {
       <h1>vikas</h1>
       <img
         src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677723409/alert-triangle_pxoyql.png"
-        alt="failure-img"
+        alt="failure view"
       />
       <p className="failure-para-home">
         Something went wrong. Please try again

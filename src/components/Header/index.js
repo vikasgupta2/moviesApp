@@ -42,6 +42,8 @@ class Header extends Component {
           <div className="search-input-container1" id="searchBar">
             <button
               type="button"
+              testid="searchButton"
+              id="button1"
               className="searchButton"
               onClick={this.redirectToSearchRoute}
             >
@@ -61,7 +63,6 @@ class Header extends Component {
               id="searchIconBtn1"
               className="search-btn1"
               onClick={searchMovie}
-              testid="searchButton"
             >
               <HiOutlineSearch className="search-icon" />
             </button>

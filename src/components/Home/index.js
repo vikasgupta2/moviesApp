@@ -195,7 +195,6 @@ class Home extends Component {
     const {randomOriginalMovie} = this.state
     return (
       <div className="top-container">
-        <h1>vikas </h1>
         <h1 className="heading-home">{randomOriginalMovie.name}</h1>
         <p className="paragraph-home">{randomOriginalMovie.overview}</p>
         <button className="btn-home" type="button">
@@ -250,11 +249,11 @@ class Home extends Component {
   renderTopContainer() {
     const {apiStatusTopContainer} = this.state
     switch (apiStatusTopContainer) {
-      case apiStatusTopContainer.success:
+      case apiStatusTopContainerConstant.success:
         return this.topContainerSuccessView()
-      case apiStatusTopContainer.failure:
+      case apiStatusTopContainerConstant.failure:
         return this.topContainerFailureView()
-      case apiStatusTopContainer.inProgress:
+      case apiStatusTopContainerConstant.inProgress:
         return this.renderLoader()
       default:
         return null

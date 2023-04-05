@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+// import {HiOutlineSearch} from 'react-icons/hi'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import MovieItem from '../MovieItem'
@@ -38,6 +39,10 @@ class Search extends Component {
       .getElementById('searchBarButton')
       .classList.add('search-input-container1')
     document.getElementById('inputEle').focus()
+    document
+      .getElementById('searchIconBtn1')
+      .setAttribute('testid', 'searchButton')
+    document.getElementById('button1').removeAttribute('testid')
   }
 
   getInputValue1 = event => {
@@ -58,15 +63,15 @@ class Search extends Component {
         method: 'GET',
       }
       const response = await fetch(apiUrl, options)
-      const data = await response.json()
-      const convertedData = data.results.map(each => ({
-        backdropPath: each.backdrop_path,
-        id: each.id,
-        overview: each.overview,
-        posterPath: each.poster_path,
-        title: each.title,
-      }))
       if (response.ok === true) {
+        const data = await response.json()
+        const convertedData = data.results.map(each => ({
+          backdropPath: each.backdrop_path,
+          id: each.id,
+          overview: each.overview,
+          posterPath: each.poster_path,
+          title: each.title,
+        }))
         if (convertedData.length !== 0) {
           this.setState({
             searchData: convertedData,
@@ -79,7 +84,7 @@ class Search extends Component {
           })
         }
       } else {
-        this.setState({apiStatus: apiStatusConstants.failureView})
+        this.setState({apiStatus: apiStatusConstants.failure})
       }
     }
   }
@@ -131,7 +136,7 @@ class Search extends Component {
     )
   }
 
-  failureView = () => (
+  failureViewSearch = () => (
     <div className="failureView">
       <img
         src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677840687/Group_1_ne42db.png"
@@ -149,12 +154,14 @@ class Search extends Component {
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.successView()
+      case apiStatusConstants.failure:
+        return this.failureViewSearch()
       case apiStatusConstants.dataZero:
         return this.noDataView()
-      case apiStatusConstants.failureView:
-        return this.failureView()
-      default:
+      case apiStatusConstants.inProgress:
         return this.loaderView()
+      default:
+        return null
     }
   }
 

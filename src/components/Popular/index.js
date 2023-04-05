@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Footer from '../Footer'
 import MovieItem from '../MovieItem'
-import FailureView from '../FailureView'
+// import FailureView from '../FailureView'
 import './index.css'
 
 const apiStatusConstants = {
@@ -44,7 +44,7 @@ class Popular extends Component {
           popularMovies: popularMovieList,
           apiStatus: apiStatusConstants.success,
         })
-      } else if (response.ok !== false) {
+      } else {
         this.setState({apiStatus: apiStatusConstants.failure})
       }
     }
@@ -69,7 +69,20 @@ class Popular extends Component {
 
   renderFailureView = () => (
     <div className="popular-failure">
-      <FailureView tryAgain={this.getPopularMovies} />
+      <div className="failure-container">
+        <img
+          src="https://res.cloudinary.com/dbnwvgd9a/image/upload/v1677723409/alert-triangle_pxoyql.png"
+          alt="failure view"
+        />
+        <p className="failure-para">Something went wrong. Please try again </p>
+        <button
+          className="failure-btn"
+          type="button"
+          onClick={this.getPopularMovies}
+        >
+          Try Again
+        </button>
+      </div>
     </div>
   )
 

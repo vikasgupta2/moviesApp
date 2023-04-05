@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import Header from '../Header'
 import Footer from '../Footer'
 import MovieItem from '../MovieItem'
-// import GenreAudioComponent from '../GenreAudio'
+import GenreAudioComponent from '../GenreAudio'
 import './index.css'
 // import GenreAudioComponent from '../GenreAudio'
 
@@ -62,63 +62,86 @@ class MovieItemDetails extends Component {
 
   render() {
     const {movieDetailsList, similarMoviesList} = this.state
+    console.log(movieDetailsList)
     const {
       adult,
-      //   genres,
+      genres,
       overview,
       releaseDate,
       runtime,
-      //   spokenLanguage,
+      spokenLanguage,
       title,
       //   id,
       //   posterPath,
-      //   backdropPath,
+      backdropPath,
       //   budget,
       //   voteAverage,
       //   voteCount,
     } = movieDetailsList
+    console.log(genres)
+    console.log(spokenLanguage)
+
+    const movieItemTopDetails = {
+      backgroundImage: `url(${backdropPath})`,
+      height: '100%',
+      backgroundSize: '100vw 70vh',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: '#181818',
+    }
 
     return (
-      <div className="movieItemContainer">
-        <Header />
-        <div className="movieDetails">
-          <h1>{title}</h1>
-          <div className="second-line">
-            <p>{runtime}</p>
-            <p>{adult}</p>
-            <p>{releaseDate}</p>
+      <>
+        <div style={movieItemTopDetails}>
+          <Header />
+          <div className="movieDetails">
+            <h1>{title}</h1>
+            <div className="second-line">
+              <p>{runtime}</p>
+              <p>{adult}</p>
+              <p>{releaseDate}</p>
+            </div>
+            <p>{overview}</p>
+            <button type="button">Play</button>
           </div>
-          <p>{overview}</p>
-          <button type="button">Play</button>
         </div>
         <div className="detail-container">
           <div className="genre">
             <h1>Genres</h1>
-            {/* <ul>
+            <ul>
               {genres.map(eachGenre => (
-                <GenreAudioComponent key={eachGenre.id} eachItem={eachGenre} />
+                <GenreAudioComponent
+                  key={eachGenre.id}
+                  eachItem={eachGenre.name}
+                />
               ))}
-            </ul> */}
+            </ul>
           </div>
           <div className="audio">
             <h1>Audio Available</h1>
-            {/* <ul>
+            <ul>
               {spokenLanguage.map(eachAudio => (
-                <GenreAudioComponent key={eachAudio.id} eachItem={eachAudio} />
+                <GenreAudioComponent
+                  key={eachAudio.id}
+                  eachItem={eachAudio.english_name}
+                />
               ))}
-            </ul> */}
+            </ul>
+          </div>
+          <div className="similar-container">
+            <h1 className="more-like-heading">More like this</h1>
+            <ul className="similar-movies">
+              {similarMoviesList.map(each => (
+                <MovieItem key={each.id} movieDetails={each} />
+              ))}
+            </ul>
+            <h1>Rating Count</h1>
+            <h1>Rating Average</h1>
+            <h1>Release Date</h1>
+            <h1>Budget</h1>
           </div>
         </div>
-        <div className="similar-container">
-          <h1>More like this</h1>
-          <ul>
-            {similarMoviesList.map(each => (
-              <MovieItem key={each.id} movieDetails={each} />
-            ))}
-          </ul>
-        </div>
         <Footer />
-      </div>
+      </>
     )
   }
 }

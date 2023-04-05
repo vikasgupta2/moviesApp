@@ -46,11 +46,11 @@ class Login extends Component {
             src="https://res.cloudinary.com/db76nylxq/image/upload/v1677486830/logo_jsnh4u.png"
             alt="login website logo"
           />
-          <img
+          {/* <img
             className="mobile-logo"
             src="https://res.cloudinary.com/db76nylxq/image/upload/v1677540075/Group_7399_od8hwh.png"
             alt="login website logo-f"
-          />
+          /> */}
         </div>
         <div className="login-container">
           <form className="login-form" onSubmit={this.verifyUser}>
