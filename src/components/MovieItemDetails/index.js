@@ -8,7 +8,7 @@ import './index.css'
 // import GenreAudioComponent from '../GenreAudio'
 
 class MovieItemDetails extends Component {
-  state = {movieDetailsList: [], similarMoviesList: []}
+  state = {movieDetailsList: [], similarMoviesList: [], audioLanguageList: []}
 
   componentDidMount() {
     this.getMovieItemDetails()
@@ -52,16 +52,23 @@ class MovieItemDetails extends Component {
           posterPath: each.poster_path,
           title: each.title,
         }))
+
+        const audioLanguage = movieDataList.spokenLanguage.map(each => ({
+          id: each.id,
+          name: each.english_name,
+        }))
+
         this.setState({
           movieDetailsList: movieDataList,
           similarMoviesList: similarMovieData,
+          audioLanguageList: audioLanguage,
         })
       }
     }
   }
 
   render() {
-    const {movieDetailsList, similarMoviesList} = this.state
+    const {movieDetailsList, similarMoviesList, audioLanguageList} = this.state
     console.log(movieDetailsList)
     const {
       adult,
@@ -69,7 +76,6 @@ class MovieItemDetails extends Component {
       overview,
       releaseDate,
       runtime,
-      spokenLanguage,
       title,
       //   id,
       //   posterPath,
@@ -79,7 +85,7 @@ class MovieItemDetails extends Component {
       //   voteCount,
     } = movieDetailsList
     console.log(genres)
-    console.log(spokenLanguage)
+    console.log(audioLanguageList)
 
     const movieItemTopDetails = {
       backgroundImage: `url(${backdropPath})`,
@@ -119,11 +125,8 @@ class MovieItemDetails extends Component {
           <div className="audio">
             <h1>Audio Available</h1>
             <ul>
-              {spokenLanguage.map(eachAudio => (
-                <GenreAudioComponent
-                  key={eachAudio.id}
-                  eachItem={eachAudio.english_name}
-                />
+              {audioLanguageList.map(eachAudio => (
+                <GenreAudioComponent key={eachAudio.id} eachItem={eachAudio} />
               ))}
             </ul>
           </div>
