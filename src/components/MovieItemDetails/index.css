@@ -3,11 +3,13 @@
 }
 .detail-container {
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
   background-color: #181818;
+  color: white;
+  padding: 25px;
 }
 .movieDetails {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-top: 80px;
   padding-bottom: 50px;
   margin-left: 120px;
@@ -15,13 +17,13 @@
   align-self: center;
 }
 .more-like-heading {
-  color: white;
+  /* color: white; */
   font-family: 'roboto';
   font-size: 25px;
   padding-left: 8px;
 }
 .similar-container {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 80vw;
   align-self: center;
 }
@@ -32,8 +34,14 @@
 .genre {
   display: flex;
   flex-direction: column;
+  color: white;
 }
 .audio {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.bottom-container {
   display: flex;
   flex-direction: column;
 }
